@@ -1,27 +1,48 @@
 package lesson2;
 
+import java.util.function.BiFunction;
+
 public class Calculator {
-  public String doOperation(String x, String y, String op) {
 
+  class Result {
+    int res;
+    String errorMessage;
+  }
+
+  private int toInt(String orig){
+    return Integer.parseInt(orig);
+  }
+
+  public String doOperation(String xs, String ys, String ops) {
+    String res;
     try {
-      int a = Integer.parseInt(x);
-      int b = Integer.parseInt(y);
-      try {
-
-        if (op.equals("add")) return String.format("%d + %d = %d", a, b, a + b);
-        if (op.equals("sub")) return String.format("%d - %d = %d", a, b, a - b);
-        if (op.equals("div")) return String.format("%d / %d = %d", a, b, a / b);
-        if (op.equals("mul")) return String.format("%d + %d = %d", a, b, a * b);
-      } catch (ArithmeticException e) {
-        return "you can't divide by 0";
-      } catch (NumberFormatException e) {
-         return "you can't  cast to int";
-      } catch (IllegalArgumentException e) {
-        return "Smt went wrong";
-      }
-    }catch (NumberFormatException e){
-      return "no parameter";
+      int x = toInt(xs);
+      int y = toInt(ys);
+      int r = doParse(x, y, ops);
+      res = String.valueOf(r);
+    } catch (NumberFormatException ex){
+      res = "Number is wrong format";
+    } catch (IllegalArgumentException ex){
+      res = ex.getMessage();
+    } catch (ArithmeticException ex){
+      res = "Division by zero caught";
+    } catch (Exception x){
+      res = String.format("Smt went wrong %s", x.getMessage());
     }
-    return null;
+    return res;
+  }
+
+  private int doOpCore(int x, int y, BiFunction<Integer, Integer, Integer> f){
+    return f.apply(x,y);
+  }
+
+  private int doParse(int x, int y, String ops) {
+    switch (ops){
+      case "add": return doOpCore( x,  y, (a,b) -> a+b);
+      case "sub": return doOpCore( x,  y, (a,b) -> a-b);
+      case "mul": return doOpCore( x,  y, (a,b) -> a*b);
+      case "div": return doOpCore( x,  y, (a,b) -> a/b);
+      default: throw new IllegalStateException("Wrong Operation");
+    }
   }
 }

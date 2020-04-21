@@ -15,6 +15,8 @@ public class DiagonalDifference {
                 this.b = b;
             }
         }
+
+
         return IntStream.range(0,data.size()).mapToObj(i -> new Pair(
                 data.get(i).get(i),
                 data.get(i).get(data.size()-1-i)

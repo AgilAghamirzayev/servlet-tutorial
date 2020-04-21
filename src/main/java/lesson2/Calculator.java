@@ -7,6 +7,14 @@ public class Calculator {
   class Result {
     int res;
     String errorMessage;
+
+    Calculator calculator = new Calculator();
+
+    public Calculator getCalculator() {
+      return calculator;
+    }
+
+
   }
 
   private int toInt(String orig){

@@ -23,6 +23,7 @@
                 <version>2.22.2</version>
             </plugin>
         </plugins>
+
     </build>
 
     <dependencies>
@@ -49,6 +50,13 @@
             <artifactId>jetty-servlet</artifactId>
             <version>9.4.27.v20200227</version>
         </dependency>
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.30</version>
+        </dependency>
     </dependencies>
+
+
 
 </project>

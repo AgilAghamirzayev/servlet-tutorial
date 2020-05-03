@@ -12,8 +12,8 @@ public class ServerApp {
         ServletContextHandler handler = new ServletContextHandler();
 
         TemplateEngine engine = TemplateEngine.folder("content");
-        handler.addServlet(new ServletHolder(new DynamicServlet1(engine)),"/hello/*");
-        handler.addServlet(new ServletHolder(new DynamicServlet2(engine)),"/student/*");
+        handler.addServlet(new ServletHolder(new DynamicServlet1(engine)), "/hello/*");
+        handler.addServlet(new ServletHolder(new DynamicServlet2(engine)), "/student/*");
 
         handler.addServlet(UploadServlet.class, "/upload/*")
                 .getRegistration().setMultipartConfig(new MultipartConfigElement("./from_user"));

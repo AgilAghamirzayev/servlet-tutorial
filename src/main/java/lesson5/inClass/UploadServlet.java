@@ -15,8 +15,8 @@ import java.nio.file.Paths;
 public class UploadServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try (OutputStream os = resp.getOutputStream()){
-            Files.copy(Paths.get("content","upload.html"), os);
+        try (OutputStream os = resp.getOutputStream()) {
+            Files.copy(Paths.get("content", "upload.html"), os);
         }
     }
 //
@@ -34,15 +34,15 @@ public class UploadServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        for (Part part: req.getParts()){
+        for (Part part : req.getParts()) {
             part.getName();
             String filename = part.getSubmittedFileName();
-            try (InputStream is = part.getInputStream()){
-                Files.copy(is,Paths.get("from_user", filename));
+            try (InputStream is = part.getInputStream()) {
+                Files.copy(is, Paths.get("from_user", filename));
             }
         }
 
-        try (PrintWriter pw = resp.getWriter()){
+        try (PrintWriter pw = resp.getWriter()) {
             pw.write("OK");
         }
     }

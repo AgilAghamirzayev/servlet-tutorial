@@ -25,7 +25,6 @@ public class ReadCookies extends HttpServlet {
                 for (Cookie cookie : cookies) {
                     String name = cookie.getName();
                     String value = cookie.getValue();
-
                     out.println(name + " : " + value);
                 }
             }

@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
-import java.util.List;
 
 public class TemplateEngine {
 
@@ -30,7 +29,7 @@ public class TemplateEngine {
     return new TemplateEngine(root_location);
   }
 
-  public void render(String templateFile, HashMap<User, List<Operation>> data, HttpServletResponse resp) {
+  public void render(String templateFile, HashMap<String,Object> data, HttpServletResponse resp) {
     resp.setCharacterEncoding(String.valueOf(StandardCharsets.UTF_8));
     try (PrintWriter w = resp.getWriter()) {
       config.getTemplate(templateFile).process(data, w);

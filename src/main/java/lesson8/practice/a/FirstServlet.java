@@ -18,7 +18,7 @@ public class FirstServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (PrintWriter pw = resp.getWriter()) {
-            pw.write(content("src/main/java/lesson8/practice/a/index.html"));
+            pw.write(content("src/main/java/lesson8/practice/a/login.html"));
         }
     }
 

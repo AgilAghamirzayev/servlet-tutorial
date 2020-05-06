@@ -10,12 +10,12 @@
 <body>
 <table border="1">
     <tbody>
-    <#list user.name as user>
+    <#list operations as operation>
         <tr>
-            <td>${user.x}</td>
-            <td>${user.y}</td>
-            <td>${user.operation}</td>
-            <td>${user.result}</td>
+            <td>${operation.x}</td>
+            <td>${operation.y}</td>
+            <td>${operation.operation}</td>
+            <td>${operation.result}</td>
         </tr>
     </#list>
     </tbody>

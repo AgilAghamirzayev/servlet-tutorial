@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,7 +15,7 @@ public class CalcServlet extends HttpServlet {
 
   private Calculator calc;
 
-  HashMap<User, List<Operation>> history = new HashMap<>();
+  HashMap<String, Object> history = new HashMap<>();
   public CalcServlet() {
   }
 
@@ -47,15 +47,18 @@ public class CalcServlet extends HttpServlet {
     String op = req.getParameter("op");
     String result = calc.doOperation(x,y,op);
 
+    List<Operation> operations = Arrays.asList(new Operation("1","4","mul","4"),
+            new Operation("1","4","mul","4"),
+            new Operation("1","4","mul","4"));
 
-    List<Operation> operations = new ArrayList<>();
-    User user = new User();
-    operations.add(new Operation(x,y,op,result));
+    history.put("operations",operations);
 
-    history.put(user,operations);
+    try (PrintWriter writer = resp.getWriter()){
+
+    }
   }
 
-  public HashMap<User, List<Operation>> getHistory() {
+  public HashMap<String, Object> getHistory() {
     return history;
   }
 }

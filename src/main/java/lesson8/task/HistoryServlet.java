@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class HistoryServlet extends HttpServlet {
 
@@ -24,7 +25,11 @@ public class HistoryServlet extends HttpServlet {
             LoginServlet loginServlet = new LoginServlet();
             loginServlet.doGet(req,resp);
         } else {
-            engine.render("history.ftl", calcServlet.getHistory(), resp);
+            if (calcServlet.history == null) {
+                try (PrintWriter out = resp.getWriter()) {
+                    out.write("History is null");
+                }
+            } else engine.render("history.ftl", calcServlet.getHistory(), resp);
         }
     }
 }
